@@ -6,9 +6,11 @@ app = Flask(__name__)
 
 app.debug = True
 
+
 @app.route('/')
 def hello_world():
-    return 'AirQuality'
+    return 'AirQuality Flask App'
+
 
 @app.route('/findAll')
 def find_all():
@@ -21,6 +23,7 @@ def find_all():
         stations_dict[station['stationName']] = station['id']
 
     return jsonify(stations_dict)
+
 
 @app.route('/location/<station_id>')
 def station_page(station_id):
@@ -37,6 +40,7 @@ def station_page(station_id):
         air_data[sensor['param']['paramCode']] = param_data['values']
 
     return jsonify(air_data)
+
 
 if __name__ == '__main__':
     app.run()
